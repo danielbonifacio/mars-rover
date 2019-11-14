@@ -14,6 +14,12 @@ const OPERATIONS_MAP = {
   W: 'subtract'
 }
 
+const INSTRUCTIONS_MAP = {
+  L: 'turnLeft',
+  R: 'turnRight',
+  M: 'moveForward'
+}
+
 class Rover {
   /**
    * Initializes a new Rover
@@ -106,6 +112,16 @@ class Rover {
     this.checkIfAxisIsAccessible(newAxisValue, axis)
 
     this[axis] = newAxisValue
+  }
+
+  execute (instruction) {
+    console.log(INSTRUCTIONS_MAP[instruction])
+    this[INSTRUCTIONS_MAP[instruction]]()
+  }
+
+  manualInput (instructions) {
+    instructions.split('').forEach(instruction => this.execute(instruction))
+    return `${this.x} ${this.y} ${this.direction}`
   }
 }
 
