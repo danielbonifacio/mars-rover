@@ -1,0 +1,93 @@
+.App {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  margin: auto;
+  margin-top: 50px;
+  max-width: 640px;
+
+  .content {
+    width: 100%;
+    margin-top: 20px;
+    background-color: rgba(#7682AA, .1);
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 6px 10px rgba(#000, .1);
+  }
+
+  label {
+    margin-bottom: 20px;
+    display: block;
+    span {
+      letter-spacing: 1px;
+      font-size: .8rem;
+      color: #ADADF9;
+
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+
+  input {
+    display: block;
+    width: 100%;
+
+    background-color: transparent;
+    border: 1px solid #ADADF9;
+    padding: 7px 10px;
+    outline: none;
+    border-radius: 5px;
+    color: #ADADF9;
+
+    &::placeholder {
+      color: rgba(#ADADF9, .3)
+    }
+
+    transition: .25s ease;
+    &:hover {
+      box-shadow: 0 3px 6px rgba(#000, .3);
+    }
+
+    &:focus {
+      box-shadow: 0 0 10px rgba(#ADADF9, .3);
+    }
+  }
+
+  button {
+    background: #ADADF9;
+    color: #fff;
+    padding: 7px 10px;
+    border: 1px solid #ADADF9;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    transition: .25s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 6px rgba(#000, .2);
+    }
+  }
+
+  .ButtonWrapper {
+    button {
+      margin: auto;
+    }
+  }
+
+  .Response {
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #000;
+    color: #C4D1FA;
+    padding: 10px;
+    max-width: 320px;
+    font-family: monospace;
+    border: 1px solid #ADADF9;
+  }
+}

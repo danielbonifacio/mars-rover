@@ -8,10 +8,10 @@ const AXIS_MAP = {
 }
 
 const OPERATIONS_MAP = {
-  N: 'sum',
-  S: 'subtract',
-  E: 'sum',
-  W: 'subtract'
+  N: 'increment',
+  S: 'decrement',
+  E: 'increment',
+  W: 'decrement'
 }
 
 const INSTRUCTIONS_MAP = {
@@ -51,7 +51,7 @@ class Rover {
     const isInEdge = edge === value
 
     if (!isAccessible) {
-      throw Error('Sorry, I cant go there. It\'s not mapped.')
+      throw new Error('Sorry, I cant go there. It\'s not mapped.')
     }
 
     if (isInEdge) {
@@ -94,11 +94,11 @@ class Rover {
     this.direction = this.clockWise()
   }
 
-  sumAxis (axis) {
+  incrementAxis (axis) {
     return this[axis] + 1
   }
 
-  subtractAxis (axis) {
+  decrementAxis (axis) {
     return this[axis] - 1
   }
 
@@ -115,7 +115,6 @@ class Rover {
   }
 
   execute (instruction) {
-    console.log(INSTRUCTIONS_MAP[instruction])
     this[INSTRUCTIONS_MAP[instruction]]()
   }
 
