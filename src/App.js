@@ -229,7 +229,9 @@ class App extends Component {
 
           <div className="TerrainSet">
             <span className="DisabledWarning">
-              {'Disabled cause there are one or more rovers injected'}
+              {
+                rovers.length ? 'Disabled cause there are one or more rovers injected' : null
+              }
             </span>
             <label>
               <span>{'Edges'}</span>
