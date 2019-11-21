@@ -28,7 +28,21 @@
       display: block;
       margin-bottom: 5px;
     }
+
+    a {
+      display: inline-block;
+      text-decoration: underline dashed;
+      color: #7682AA;
+      margin-left: 10px;
+
+      transition: .25s ease;
+      &:hover,
+      &:focus {
+        color: #ADADF9;
+      }
+    }
   }
+
 
   input {
     display: block;
@@ -52,6 +66,10 @@
 
     &:focus {
       box-shadow: 0 0 10px rgba(#ADADF9, .3);
+    }
+
+    &[disabled] {
+      background-color: rgba(#7682AA, .4);
     }
   }
 
@@ -80,14 +98,49 @@
   }
 
   .Response {
+    width: 100%;
     margin: 20px auto;
-    text-align: center;
+    text-align: left;
     border-radius: 5px;
     background-color: #000;
     color: #C4D1FA;
     padding: 10px;
-    max-width: 320px;
     font-family: monospace;
     border: 1px solid #ADADF9;
+    white-space: pre-wrap;
+  }
+
+  .TerrainSet {
+    margin: 0 -20px;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(#7682AA, .5);
+    
+    border-top: 1px solid rgba(#7682AA, .5);
+    padding-top: 20px;
+    
+    &:hover,
+    &:focus-within {
+      background-color: rgba(#7682AA, .1);
+    }
+
+    .DisabledWarning {
+      font-size: .85rem;
+      opacity: .5;
+      font-weight: 300;
+      letter-spacing: .5px;
+    }
+  }
+
+  .NewRoverForm {
+    margin: -1px -20px 20px;
+    padding: 20px;
+
+    border-bottom: 1px solid rgba(#7682AA, .5);
+    border-top: 1px solid rgba(#7682AA, .5);
+    
+    &:hover,
+    &:focus-within {
+      background-color: rgba(#7682AA, .1);
+    }
   }
 }

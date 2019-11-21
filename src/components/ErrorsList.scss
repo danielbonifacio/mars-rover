@@ -1,0 +1,14 @@
+.ErrorsList {
+  background-color: #e8516d;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 6px rgba(#000, .1);
+
+  .error {
+    font-size: .85rem;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}

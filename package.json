@@ -28,7 +28,12 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    
+  },
   "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.6.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",

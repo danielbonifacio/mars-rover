@@ -12,6 +12,7 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly'
   },
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -24,5 +25,9 @@ module.exports = {
   ],
   rules: {
     "react/jsx-uses-react": 1,
+    'no-mixed-operators': 'off',
+    'react/prop-types': 'off',
+    'no-throw-literal': 'off',
+    'no-new': 'off'
   }
 }

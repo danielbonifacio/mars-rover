@@ -1,0 +1,51 @@
+.RoversList {
+  background-color: #ADADF9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 6px rgba(#000, .1);
+
+  .rover {
+    background-color: #C4D1FA;
+    box-shadow: 0 3px 6px rgba(#000, .1);
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    color: rgba(#46465c, .5);
+    font-size: 1rem;
+    
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    .RoverID {
+      padding: 5px;
+      color: #46465c;
+      display: block;
+      flex: 3;
+
+      &::before {
+        content: 'Rover:';
+        display: inline-block;
+        margin-right: 4px;
+      }
+    }
+    
+    .RoverinitialCoordinate {
+      padding: 5px;
+      flex: 1;
+      display: block;
+    }
+
+    .RoverInstructions {
+      padding: 5px;
+      flex: 2;
+      display: block;
+    }
+  }
+
+  button {
+    background-color: transparent;
+    border: 1px solid #fff!important;
+  }
+}

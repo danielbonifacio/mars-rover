@@ -23,26 +23,75 @@ const INSTRUCTIONS_MAP = {
 class Rover {
   /**
    * Initializes a new Rover
-   * @param {String} initialCoordinate
+   * @param {string} id
+   * @param {string} initialCoordinate
+   * @param {string} limit
    */
-  constructor (initialCoordinate, limit) {
+  constructor (id, initialCoordinate, limit) {
+    this.validateInitialInputInfo(initialCoordinate, limit, id)
+
     const [x, y, direction] = initialCoordinate.split(' ')
     const [edgeX, edgeY] = limit.split(' ')
 
+    this.id = id
     this.x = parseInt(x)
     this.y = parseInt(y)
     this.direction = direction
 
     this.edgeX = parseInt(edgeX)
     this.edgeY = parseInt(edgeY)
+
+    this.instructions = ''
+  }
+
+  validateInitialInputInfo (initialCoordinate, limit, id) {
+    const [x, y, direction] = initialCoordinate.split(' ')
+    const [edgeX, edgeY] = limit.split(' ')
+
+    const rules = [
+      {
+        condition: !CARDINAL_DIRECTION.includes(direction),
+        message: `${direction} is not a valid cardinal direction`
+      },
+      {
+        condition: !(id.length > 2),
+        message: 'Rover Identificator length must be greater than 2'
+      },
+      {
+        condition: !(id.length < 20),
+        message: 'Rover Identificator length must be lesser than 20'
+      },
+      {
+        condition: !x || !y || !direction,
+        message: 'Badly formatted initial coordinates'
+      },
+      {
+        condition: isNaN(x) || isNaN(y) || isNaN(edgeX) || isNaN(edgeY),
+        message: 'Axis must be numbers'
+      },
+      {
+        condition: parseInt(x) > parseInt(edgeX) || parseInt(y) > parseInt(edgeY),
+        message: 'Initial coordinates could not be greater than edges'
+      },
+      {
+        condition: parseInt(edgeX) <= 0 || parseInt(edgeY) <= 0,
+        message: 'Edges needs to be greater than 0'
+      }
+    ]
+
+    rules.forEach(({ condition, message }) => {
+      if (condition) {
+        throw new Error(message)
+      }
+    })
   }
 
   /**
    * Verify if new axis value is accessible.
    * Will throw an error if isn't.
    *
-   * @param {Number} value new axis value
-   * @param {String} axis
+   * @param {number} value new axis value
+   * @param {string} axis
    */
   checkIfAxisIsAccessible (value, axis) {
     const edge = this[`edge${axis.toUpperCase()}`]
@@ -50,12 +99,28 @@ class Rover {
     const isAccessible = value <= edge
     const isInEdge = edge === value
 
-    if (!isAccessible) {
+    if (!isAccessible || axis < 0) {
       throw new Error('Sorry, I cant go there. It\'s not mapped.')
     }
 
     if (isInEdge) {
       console.log(`Ohh, I'm in the edge. This is my ${axis.toUpperCase()} axis limit.`)
+    }
+  }
+
+  /**
+   * Validates if instructions are mapped
+   * @param {string} instruction
+   */
+  validate (instruction) {
+    if (instruction.length > 1) {
+      instruction.split('').forEach(this.validate)
+    } else {
+      const isValid = Object.keys(INSTRUCTIONS_MAP).includes(instruction)
+
+      if (!isValid) {
+        throw new Error('Please, provide valid instructions: L, R or M (capitalized)')
+      }
     }
   }
 
@@ -114,12 +179,41 @@ class Rover {
     this[axis] = newAxisValue
   }
 
+  /**
+   * Executes single instruction
+   * @param {string} instruction
+   */
   execute (instruction) {
+    this.validate(instruction)
     this[INSTRUCTIONS_MAP[instruction]]()
   }
 
-  manualInput (instructions) {
+  /**
+   * Execute instructions sentence
+   * @param {string} instructions
+   */
+  executeInstructionSentence (instructions) {
     instructions.split('').forEach(instruction => this.execute(instruction))
+    return `${this.x} ${this.y} ${this.direction}`
+  }
+
+  /**
+   * Set instructions
+   * @param {string} instructions
+   */
+  setInstructions (instructions) {
+    this.validate(instructions)
+    this.instructions = instructions
+  }
+
+  /**
+   * Execute internal state instructions
+   */
+  executeInstructions () {
+    return this.executeInstructionSentence(this.instructions)
+  }
+
+  getInitialCoordinate () {
     return `${this.x} ${this.y} ${this.direction}`
   }
 }
