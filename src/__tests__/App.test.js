@@ -62,7 +62,7 @@ describe('Rover app', () => {
     const app = shallow(<App />)
 
     jest
-      .spyOn(global, 'confirm')
+      .spyOn(window, 'confirm')
       .mockImplementationOnce(() => true)
 
     // add rover correctly

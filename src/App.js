@@ -56,7 +56,7 @@ class App extends Component {
   }
 
   removeRover = (id) => {
-    const shouldRemove = confirm(`Are you sure you want to delete ${id} rover?`)
+    const shouldRemove = window.confirm(`Are you sure you want to delete ${id} rover?`)
     if (shouldRemove) {
       this.setState({
         rovers: [...this.state.rovers.filter(r => r.id !== id)]
