@@ -96,7 +96,7 @@ class Rover {
   checkIfAxisIsAccessible (value, axis) {
     const edge = this[`edge${axis.toUpperCase()}`]
 
-    const isAccessible = value <= edge
+    const isAccessible = value <= edge && value > 0
     const isInEdge = edge === value
 
     if (!isAccessible || axis < 0) {
